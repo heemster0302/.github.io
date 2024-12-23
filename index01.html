@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="zh-CN">	
+<head>
+<meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">	
+<title>&nbsp;知识文章</title>
+ <link rel="stylesheet" href="layout.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                 <span>长不高的靴子的知识库</span>
+            </div>
+            <div class="nav-links">
+				<a href="index.html">首页</a>
+                <a href="index01.html" class="active">知识文章</a>
+                <a href="index02.html">AI工具箱</a>
+                <a href="/dashboard">数据中心</a>
+                <a href="index04.html">关于我</a>
+            </div>
+        </div>
+    </nav>
+
+	 <!-- 文章页面内容 -->
+    <div id="articles-section">
+    <!-- 文章页面头部 -->
+    <header class="page-header">
+        <div class="container">
+           <h1>知识文章</h1>
+            <div class="search-bar">
+                <input type="text" placeholder="搜索文章...">
+                <button type="submit">搜索</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 文章分类导航 -->
+    <nav class="category-nav">
+        <div class="container">
+                <a href="javascript:void(0)" data-category="all" class="active">全部</a>
+                <a href="javascript:void(0)" data-category="notes">学习笔记</a>
+                <a href="javascript:void(0)" data-category="articles">文章库</a>
+                <a href="javascript:void(0)" data-category="homework">作业成果</a>
+        </div>
+    </nav>
+
+    <!-- 主要内容区域 -->
+    <main class="articles-container">
+        <div class="container">
+			  <!-- 上传文章按钮 -->
+                <div class="upload-section">
+                       <button class="upload-btn" type="button">
+                        <i class="plus-icon">+</i>
+                        上传文章
+                    </button>
+                </div>
+
+                <!-- 上传文章表单弹窗 -->
+                <div id="uploadModal" class="modal">
+                    <div class="modal-content">
+                          <span class="close-btn" style="cursor: pointer;">&times;</span>
+                        <h2>上传文章</h2>
+                        <form id="articleForm" class="upload-form">
+                            <div class="form-group">
+                                <label for="title">文章标题</label>
+                                <input type="text" id="title" name="title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="category">分类</label>
+                                <select id="category" name="category" required>
+                                    <option value="">请选择分类</option>
+                                    <option value="notes">学习笔记</option>
+                                    <option value="articles">文章库</option>
+                                    <option value="homework">作业成果</option>
+                                </select>
+                            </div>
+							<div class="form-group">
+                                <label>标签（可选）</label>
+                                <div class="tags-select">
+                                    <!-- 标签选项将通过JavaScript动态渲染 -->
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="document">文章内容</label>
+                                <div class="file-upload">
+                                    <input type="file" id="document" name="document" 
+                                           accept=".doc,.docx,.pdf" required>
+                                    <p class="file-hint">支持的格式：Word文档(.doc/.docx)、PDF文件(.pdf)</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cover">封面图片（可选）</label>
+                                <input type="file" id="cover" name="cover" accept="image/*">
+                            </div>
+                            <div class="form-actions">
+                                 <button type="button" class="btn-secondary">取消</button>
+                                <button type="submit" class="btn-primary">发布</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+			
+			
+                <!-- 文章列表 -->
+                <section class="articles">
+                    <!-- 文章内容会通过JavaScript动态渲染 -->
+                </section>
+            <!-- 侧边栏 -->
+            <aside class="sidebar">
+               
+                <div class="widget">
+                    <div class="widget-header">
+                            <h3>标签</h3>
+                            <button class="add-tag-btn" type="button">
+                                <i class="plus-icon">+</i>
+                            </button>
+                        </div>
+                        <div class="tags-container">
+                            <!-- 标签将通过JavaScript动态渲染 -->
+                        </div>
+                </div>
+            </aside>
+
+            
+        </div>
+    </main>
+
+    <!-- 分页 -->
+    <div class="pagination">
+        <div class="container">
+            <a href="#" class="prev">上一页</a>
+            <span class="current">1</span>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <span class="dots">...</span>
+            <a href="#">10</a>
+            <a href="#" class="next">下一页</a>
+		   </div>
+        </div>
+    </div>
+
+    <!-- 添加标签的模态框 -->
+    <div id="tagModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" style="cursor: pointer; position: absolute; right: 1rem; top: 1rem;">&times;</span>
+            <h2>添加标签</h2>
+            <form id="tagForm" class="tag-form">
+                <div class="form-group">
+                    <label for="tagName">标签名称</label>
+                    <input type="text" id="tagName" name="tagName" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeTagModal()">取消</button>
+                    <button type="submit" class="btn-primary">添加</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+             <p>© 2024 知识花园. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="/privacy">隐私政策</a>&nbsp;&nbsp;
+                <a href="/terms">使用条款</a>&nbsp;&nbsp;
+                <a href="/contact">联系我</a>
+            </div>
+        </div>
+    </footer>
+	
+	<script>	
+        // 等待DOM加载完成
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取DOM元素
+            const uploadBtn = document.querySelector('.upload-btn');
+            const modal = document.getElementById('uploadModal');
+            const closeBtn = document.querySelector('.close-btn');
+            const form = document.getElementById('articleForm');
+            const fileInput = document.getElementById('document');
+            const cancelBtn = document.querySelector('.btn-secondary');
+
+            // 打开模态框
+            uploadBtn.onclick = function() {
+                modal.style.display = 'block';
+            }
+
+            // 关闭模态框
+            function closeModal() {
+                modal.style.display = 'none';
+                form.reset();
+            }
+
+            // 关闭按钮点击事件
+            closeBtn.onclick = closeModal;
+            
+            // 取消按钮点击事件
+            cancelBtn.onclick = closeModal;
+
+            // 点击模态框外部关闭
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    closeModal();
+                }
+            }
+
+            // 处理文件选择
+            fileInput.onchange = function() {
+                const file = this.files[0];
+                if (file) {
+                    // 检查文件类型
+                    const fileName = file.name.toLowerCase();
+                    const validExtensions = ['.doc', '.docx', '.pdf'];
+                    const isValidType = validExtensions.some(ext => fileName.endsWith(ext));
+
+                    if (!isValidType) {
+                        alert('请上传Word文档(.doc/.docx)或PDF文件(.pdf)');
+                        this.value = '';
+                        return;
+                    }
+
+                    // 检查文件大小（10MB）
+                    if (file.size > 10 * 1024 * 1024) {
+                        alert('文件大小不能超过10MB');
+                        this.value = '';
+                        return;
+                    }
+                }
+            }
+
+              // 文章数据（初始为空）
+             let articles = JSON.parse(localStorage.getItem('articles') || JSON.stringify([
+                {
+                    id: 1,
+                    title: '示例文章：Web开发学习笔记',
+                    category: 'notes',
+                    categoryName: '学习笔记',
+                    date: '2024-03-21',
+                    description: '文件类型：application/pdf，大小：2.5MB',
+                    file: 'web-dev-notes.pdf',
+                    tags: ['Web开发', '学习笔记']
+                }
+            ]));
+
+            // 获取文章列表容器
+            const articlesContainer = document.querySelector('.articles');
+            
+            // 获取所有分类导航链接
+            const categoryLinks = document.querySelectorAll('.category-nav a');
+
+            // 渲染文章列表
+            function renderArticles(category = 'all') {
+                // 清空容器
+                articlesContainer.innerHTML = '';
+                
+                // 筛选文章
+                const filteredArticles = category === 'all' 
+                    ? articles 
+                    : articles.filter(article => article.category === category);
+
+                // 如果没有文章
+                if (filteredArticles.length === 0) {
+                    articlesContainer.innerHTML = `
+                        <div class="no-articles">
+                           <p>您还没有上传${category === 'all' ? '' : '该分类的'}文章</p>
+                            <p>点击右上角的"上传文章"按钮开始添加吧！</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                // 渲染文章
+                filteredArticles.forEach(article => {
+                    articlesContainer.innerHTML += `
+                        <article class="article-card">
+                            <div class="article-actions">
+                                 <button class="delete-btn" onclick="deleteArticle('${article.id}')">
+                                    <span class="delete-icon">&times;</span>
+                                </button>
+                            </div>
+                            <div class="article-meta">
+                                <span class="category">${article.categoryName}</span>
+                                <span class="date">${article.date}</span>
+                            </div>
+                            <h2><a href="#">${article.title}</a></h2>
+                            <p>${article.description}</p>
+                            <div class="article-tags">
+                                ${article.tags.map(tag => `
+                                    <span class="tag">${tag}</span>
+                                `).join('')}
+                            </div>
+                            <div class="article-footer">
+                                <a href="${article.fileURL}" class="read-more" 
+                                   target="_blank" download="${article.title}">
+                                   阅读全文
+                                </a>
+                            </div>
+                        </article>
+                    `;
+                });
+            }
+
+            // 处理分类点击事件
+            categoryLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // 更新激活状态
+                    categoryLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // 获取并显示分类文章
+                    const category = this.dataset.category;
+                    renderArticles(category);
+                });
+            });
+
+            // 处理文章上传成功后的更新
+            function addNewArticle(articleData) {
+				// 将文件内容转换为 URL
+                const file = document.getElementById('document').files[0];
+                const fileURL = URL.createObjectURL(file);
+                articleData.fileURL = fileURL;
+                
+                articles.unshift(articleData); // 添加到数组开头
+				localStorage.setItem('articles', JSON.stringify(articles));
+                const currentCategory = document.querySelector('.category-nav a.active').dataset.category;
+                renderArticles(currentCategory); // 重新渲染当前分类
+            }
+
+            // 修改表单提交处理
+            form.onsubmit = function(e) {
+                e.preventDefault();
+
+                const title = document.getElementById('title').value.trim();
+                const category = document.getElementById('category').value;
+                const file = fileInput.files[0];
+
+                // 表单验证
+                if (!title || !category || !file) {
+                    alert('请填写所有必填字段');
+                    return;
+                }
+				
+				// 获取选中的标签
+                const selectedTags = Array.from(form.querySelectorAll('input[name="tags"]:checked'))
+                    .map(input => input.value);
+
+                // 创建新文章对象
+                const newArticle = {
+                    id: Date.now(), // 使用时间戳作为ID
+                    title: title,
+                    category: category,
+                    categoryName: document.querySelector(`option[value="${category}"]`).textContent,
+                    date: new Date().toLocaleDateString('zh-CN'),
+                    description: `文件类型：${file.type}，大小：${(file.size / 1024).toFixed(1)}KB`,
+                    file: file.name,
+                    tags: selectedTags
+                };
+
+                // 添加新文章并更新显示
+                addNewArticle(newArticle);
+
+                // 显示成功消息
+                alert(`文章《${title}》上传成功！`);
+
+                // 关闭模态框并重置表单
+                closeModal();
+            }
+        // 初始渲染所有文章
+            renderArticles();
+			
+			 // 获取标签相关元素
+            const addTagBtn = document.querySelector('.add-tag-btn');
+            const tagModal = document.getElementById('tagModal');
+            const tagForm = document.getElementById('tagForm');
+			const tagCloseBtn = tagModal.querySelector('.close-btn');
+            const tagCancelBtn = tagForm.querySelector('.btn-secondary');
+            const tagsContainer = document.querySelector('.tags-container');
+            const tagsSelect = document.querySelector('.tags-select');
+			
+            // 打开标签模态框
+            addTagBtn.addEventListener('click', function() {
+                tagModal.style.display = 'block';
+				document.getElementById('tagName').focus();
+            });
+
+            // 关闭标签模态框
+            function closeTagModal() {
+                tagModal.style.display = 'none';
+                tagForm.reset();
+            }
+
+            // 标签模态框关闭按钮事件
+            if (tagCloseBtn) {
+                tagCloseBtn.addEventListener('click', closeTagModal);
+            }
+            if (tagCancelBtn) {
+                tagCancelBtn.addEventListener('click', closeTagModal);
+            }
+
+            // 点击标签模态框外部关闭
+            window.addEventListener('click', function(event) {
+                if (event.target == modal) {
+                    closeModal();
+                }
+                if (event.target == tagModal) {
+                    closeTagModal();
+                }
+            });
+
+            // 从localStorage获取标签
+            let tags = JSON.parse(localStorage.getItem('tags') || JSON.stringify([
+                'Web开发',
+                '学习笔记',
+                'JavaScript',
+                'HTML/CSS'
+            ]));
+
+            // 渲染标签
+            function renderTags() {
+                // 渲染侧边栏标签
+                tagsContainer.innerHTML = tags.map(tag => `
+                    <span class="tag" data-tag="${tag}">
+                        ${tag}
+                        <span class="delete-tag" onclick="deleteTag('${tag}')">&times;</span>
+                    </span>
+                `).join('');
+
+                // 渲染标签选择
+                tagsSelect.innerHTML = tags.map(tag => `
+                    <div class="tag-option">
+                        <input type="checkbox" id="tag-${tag}" name="tags" 
+                               value="${tag}" class="tag-checkbox">
+                        <label for="tag-${tag}" class="tag-label">${tag}</label>
+                    </div>
+                `).join('');
+            }
+
+            // 添加标签
+            tagForm.onsubmit = function(e) {
+                e.preventDefault();
+                const tagName = document.getElementById('tagName').value.trim();
+                
+                if (!tagName) return;
+                if (tags.includes(tagName)) {
+                    alert('该标签已存在！');
+                    return;
+                }
+
+                tags.push(tagName);
+                localStorage.setItem('tags', JSON.stringify(tags));
+                renderTags();
+                closeTagModal();
+				alert('标签添加成功！');
+            }
+
+            // 删除标签
+            window.deleteTag = function(tag) {
+                if (confirm(`确定要删除标签"${tag}"吗？`)) {
+                    tags = tags.filter(t => t !== tag);
+                    localStorage.setItem('tags', JSON.stringify(tags));
+                    renderTags();
+                }
+            }
+
+            // 初始渲染标签
+            renderTags();
+        });
+
+		// 删除文章功能
+            function deleteArticle(articleId) {
+                if (confirm('确定要删除这篇文章吗？')) {
+                    articles = articles.filter(article => article.id !== articleId);
+                    localStorage.setItem('articles', JSON.stringify(articles));
+                    const currentCategory = document.querySelector('.category-nav a.active').dataset.category;
+                    renderArticles(currentCategory);
+                }
+            }
+        
+    </script>
+</body>
+</html>

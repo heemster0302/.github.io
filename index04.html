@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>关于我</title>
+<link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="about.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+	<!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span>长不高的靴子的知识库</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">首页</a>
+                <a href="index01.html">知识文章</a>
+                <a href="index02.html">AI工具箱</a>
+				<a href="index03.html">数据中心</a>
+                <a href="index04.html" class="active">关于我</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 背景动画 -->
+    <div class="animated-background">
+        <div class="light"></div>
+    </div>
+
+    <!-- 主要内容区域 -->
+    <div class="about-wrapper">
+        <!-- 个人信息卡片 -->
+         <div class="profile-section">
+            <div class="profile-card">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <img src="./images/avatar.jpg" alt="头像">
+                    </div>
+                    <div class="profile-info">
+                        <h1>长不高的靴子</h1>
+                        <p class="subtitle">西北大学/网络与新媒体/大三</p>             
+                    </div>
+                </div>
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <span class="stat-value">我的</span>
+                        
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">个人</span>
+                      
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">主页</span>
+   
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 导航栏 -->
+        <nav class="about-nav">
+            <a href="#home">主页</a>
+            <a href="#hobby">爱好</a>
+            <a href="#essay">随笔</a>
+            <a href="#gallery">相册</a>
+            <a href="#message">留言</a>
+        </nav>
+
+        <!-- 内容区域 -->
+        <div class="content-container">
+            <!-- 主页内容 -->
+             <section id="home" class="content-section">
+                <div class="intro-card">
+                    <h2>自我介绍</h2>
+                    <div class="intro-content">
+                        <p>姓名：薛乐童</p>
+                        <p>年龄：20</p>
+                        <p>性别：女</p>
+                        <p>手机：18751478505</p>
+						<p>邮箱：1665396190@qq.com</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 爱好内容 -->
+            <section id="hobby" class="content-section">
+                <div class="hobby-grid">
+                    <div class="hobby-card">
+                        <div class="hobby-icon">🎮</div>
+                        <h3>游戏</h3>
+                        <p>热爱电子游戏，享受虚拟世界带来的乐趣</p>
+                    </div>
+                    <div class="hobby-card">
+                        <div class="hobby-icon">📚</div>
+                        <h3>阅读</h3>
+                        <p>喜欢阅读各类书籍，汲取知识的养分</p>
+                    </div>
+                     <div class="hobby-card">
+                        <div class="hobby-icon">🎵</div>
+                        <h3>音乐</h3>
+                        <p>热爱音乐，生活中不可或缺的调味剂</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 随笔内容 -->
+            <section id="essay" class="content-section">
+                <div class="essay-grid">
+                    <article class="essay-card">
+                        <div class="essay-date">2024-03-21</div>
+                        <h3>我的大学生活</h3>
+                        <p>记录我的大学点点滴滴...</p>
+                        <a href="#" class="read-more">阅读全文</a>
+                    </article>
+                </div>
+            </section>
+
+           <!-- 相册内容 -->
+            <section id="gallery" class="content-section">
+                <!-- 图片上传区域 -->
+                <div class="upload-area">
+                    <label for="image-upload" class="upload-label">
+                        <span class="upload-icon">+</span>
+                        <span>上传图片</span>
+                        <input type="file" id="image-upload" accept="image/*" multiple hidden>
+                    </label>
+                </div>
+                
+                <!-- 图片预览区域 -->
+                <div class="gallery-grid">
+              
+                   
+                </div>
+                
+                <!-- 图片预览模态框 -->
+                <div id="image-modal" class="image-modal">
+                    <span class="modal-close">&times;</span>
+                    <img id="modal-image" src="data:," alt="预览图片">
+                </div>
+            </section>
+
+               <!-- 留言内容 -->
+            <section id="message" class="content-section">
+                <div class="message-board">
+                    <form class="message-form" id="messageForm">
+                        <textarea placeholder="写下你想说的话..." required></textarea>
+                        <button type="submit" class="submit-btn">
+                            <span>发送留言</span>
+                            <div class="btn-effect"></div>
+                        </button>
+                    </form>
+                    <div class="messages-container">
+                        <!-- 留言列表 -->
+                        <div class="messages-list">
+                            <!-- 留言将通过JavaScript动态添加 -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const imageUpload = document.getElementById('image-upload');
+            const galleryGrid = document.querySelector('.gallery-grid');
+            const imageModal = document.getElementById('image-modal');
+            const modalImage = document.getElementById('modal-image');
+            const modalClose = document.querySelector('.modal-close');
+
+            // 从localStorage获取已保存的图片
+            let galleryImages = JSON.parse(localStorage.getItem('galleryImages') || '[]');
+            
+            // 渲染已保存的图片
+            function renderGallery() {
+            // 清空现有内容
+                galleryGrid.innerHTML = '';
+                
+                // 渲染所有图片
+                galleryImages.forEach(img => {
+                    const galleryItem = document.createElement('div');
+                    galleryItem.className = 'gallery-item';
+                    galleryItem.innerHTML = `
+                        <div class="gallery-item-actions">
+                            <button class="delete-btn" title="删除图片">&times;</button>
+                        </div>
+                        <img src="${img.src}" alt="${img.alt}">
+`;
+                    galleryGrid.appendChild(galleryItem);
+                });
+                
+                // 重新添加事件监听
+                addGalleryEventListeners();
+            }
+            
+            // 添加图片相关的事件监听
+            function addGalleryEventListeners() {
+                // 删除按钮事件
+                document.querySelectorAll('.delete-btn').forEach(btn => {
+ btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        if(confirm('确定要删除这张图片吗？')) {
+const galleryItem = this.closest('.gallery-item');
+                            const imgSrc = galleryItem.querySelector('img').src;
+                            // 从数组和localStorage中移除图片
+                            galleryImages = galleryImages.filter(img => img.src !== imgSrc);
+                            localStorage.setItem('galleryImages', JSON.stringify(galleryImages));
+renderGallery(); // 重新渲染整个相册
+                        }
+                    });
+                });
+                
+                // 图片预览事件
+                document.querySelectorAll('.gallery-item').forEach(item => {
+item.addEventListener('click', function(e) {
+                        if (!e.target.classList.contains('delete-btn')) {
+                            const imgSrc = this.querySelector('img').src;
+                            modalImage.src = imgSrc;
+                            imageModal.classList.add('active');
+                        }
+                    });
+                });
+            }
+            
+            // 初始渲染图片
+            renderGallery();
+
+            // 处理图片上传
+            imageUpload.addEventListener('change', function(e) {
+                const files = Array.from(e.target.files);
+                
+                files.forEach(file => {
+					// 检查文件类型
+                    if (!file.type.match('image.*')) {
+                        alert('请上传图片文件！');
+                        return;
+                    }
+
+                    if (file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+						
+						// 添加错误处理
+                        reader.onerror = function() {
+                            alert('读取文件失败，请重试！');
+                        };
+
+                        
+                        reader.onload = function(e) {
+							// 检查是否成功读取到数据
+                            if (!e.target.result) {
+                                alert('读取图片数据失败！');
+                                return;
+                            }
+
+                            // 保存图片数据
+                            galleryImages.push({
+                                src: e.target.result,
+                                alt: file.name
+                            });
+                            
+                            // 保存到localStorage
+                            localStorage.setItem('galleryImages', JSON.stringify(galleryImages));
+                            
+                            // 重新渲染图片列表
+                            renderGallery();
+                        }
+                        
+                        reader.readAsDataURL(file);
+                    }
+                });
+                
+                // 清空文件输入框，允许重复上传相同的文件
+                this.value = '';
+            });
+
+            // 关闭预览
+            modalClose.addEventListener('click', () => {
+                imageModal.classList.remove('active');
+            });
+
+            // 点击外部关闭预览
+            imageModal.addEventListener('click', (e) => {
+                if (e.target === imageModal) {
+                    imageModal.classList.remove('active');
+                }
+            });
+
+            // 留言功能
+            const messageForm = document.getElementById('messageForm');
+            const messagesList = document.querySelector('.messages-list');
+            
+            // 从localStorage获取已有留言
+            let messages = JSON.parse(localStorage.getItem('messages') || '[]');
+            
+            // 渲染留言
+            function renderMessages() {
+                messagesList.innerHTML = messages.map(msg => `
+                    <div class="message-item">
+                        <div class="message-actions">
+                            <button class="message-delete-btn" title="删除留言">&times;</button>
+                        </div>
+                        <div class="message-content">${msg.content}</div>
+                        <div class="message-meta">
+                            <span class="message-time">${msg.time}</span>
+                        </div>
+                    </div>
+                `).join('');
+				    
+                // 添加删除事件监听
+                addMessageDeleteListeners();
+            }
+            
+            // 添加删除留言的事件监听
+            function addMessageDeleteListeners() {
+                document.querySelectorAll('.message-delete-btn').forEach((btn, index) => {
+                    btn.addEventListener('click', function() {
+                        if(confirm('确定要删除这条留言吗？')) {
+                            messages.splice(index, 1);
+                            localStorage.setItem('messages', JSON.stringify(messages));
+                            renderMessages();
+                        }
+                    });
+                });
+            }
+            
+            // 初始渲染留言
+            renderMessages();
+            
+            // 处理留言提交
+            messageForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const textarea = this.querySelector('textarea');
+                const content = textarea.value.trim();
+                
+                if (!content) return;
+                
+                // 创建新留言
+                const newMessage = {
+                    content: content,
+                    time: new Date().toLocaleString('zh-CN', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    })
+                };
+                
+                // 添加到留言列表
+                messages.unshift(newMessage); // 新留言显示在顶部
+                
+                // 保存到localStorage
+                localStorage.setItem('messages', JSON.stringify(messages));
+                
+                // 重新渲染留言
+                renderMessages();
+                
+                // 清空输入框
+                textarea.value = '';
+                
+                // 显示成功提示
+                alert('留言发布成功！');
+            });
+			
+            // 随笔功能
+            const addEssayBtn = document.querySelector('.add-essay-btn');
+            const essayModal = document.getElementById('essayModal');
+            const essayForm = document.getElementById('essayForm');
+            const essayGrid = document.querySelector('.essay-grid');
+            
+            // 从localStorage获取随笔数据
+            let essays = JSON.parse(localStorage.getItem('essays') || '[]');
+            
+            // 渲染随笔列表
+            function renderEssays() {
+                essayGrid.innerHTML = essays.map(essay => `
+                    <article class="essay-card">
+                        <div class="essay-actions-btn">
+                            <button class="essay-edit-btn" onclick="editEssay(${essay.id})" title="编辑">✎</button>
+                            <button class="essay-delete-btn" onclick="deleteEssay(${essay.id})" title="删除">&times;</button>
+                        </div>
+                        <div class="essay-date">${essay.date}</div>
+                        <h3>${essay.title}</h3>
+                        <p>${essay.content}</p>
+                        <button class="read-more" onclick="showFullEssay(${essay.id})">阅读全文</button>
+                    </article>
+                `).join('');
+            }
+            
+            // 初始渲染
+            renderEssays();
+            
+            // 打开模态框
+            addEssayBtn.addEventListener('click', () => {
+                essayModal.style.display = 'block';
+                essayForm.reset();
+            });
+            
+            // 关闭模态框
+            document.querySelector('#essayModal .close-btn').addEventListener('click', () => {
+                essayModal.style.display = 'none';
+            });
+            
+            document.querySelector('#essayModal .btn-secondary').addEventListener('click', () => {
+                essayModal.style.display = 'none';
+            });
+            
+            // 提交表单
+            essayForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const title = document.getElementById('essayTitle').value.trim();
+                const content = document.getElementById('essayContent').value.trim();
+                
+                const newEssay = {
+                    id: Date.now(),
+                    title: title,
+                    content: content,
+                    date: new Date().toLocaleString('zh-CN', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit'
+                    })
+                };
+                
+                essays.unshift(newEssay);
+                localStorage.setItem('essays', JSON.stringify(essays));
+                renderEssays();
+                
+                essayModal.style.display = 'none';
+                alert('随笔发布成功！');
+            });
+            
+            // 删除随笔
+            window.deleteEssay = function(id) {
+                if (confirm('确定要删除这篇随笔吗？')) {
+                    essays = essays.filter(essay => essay.id !== id);
+                    localStorage.setItem('essays', JSON.stringify(essays));
+                    renderEssays();
+                }
+            };
+            
+            // 编辑随笔
+            window.editEssay = function(id) {
+                const essay = essays.find(essay => essay.id === id);
+                if (essay) {
+                    document.getElementById('essayTitle').value = essay.title;
+                    document.getElementById('essayContent').value = essay.content;
+                    essayModal.style.display = 'block';
+                    
+                    // 修改表单提交处理
+                    const oldSubmit = essayForm.onsubmit;
+                    essayForm.onsubmit = function(e) {
+                        e.preventDefault();
+                        essay.title = document.getElementById('essayTitle').value.trim();
+                        essay.content = document.getElementById('essayContent').value.trim();
+                        localStorage.setItem('essays', JSON.stringify(essays));
+                        renderEssays();
+                        essayModal.style.display = 'none';
+                        essayForm.onsubmit = oldSubmit;
+                        alert('随笔更新成功！');
+                    };
+                }
+            };
+            
+            // 显示完整随笔
+            window.showFullEssay = function(id) {
+                const essay = essays.find(essay => essay.id === id);
+                if (essay) {
+                    alert(`${essay.title}\n\n${essay.content}`);
+                    // 这里可以改为更好的显示方式，比如新的模态框
+                }
+            };
+        });
+    </script>
+</body>
+</html> 

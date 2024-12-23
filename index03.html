@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数据中心</title>
+<link rel="stylesheet" href="layout.css">
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="echarts.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+	 <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span>长不高的靴子的知识库</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">首页</a>
+                <a href="index01.html">知识文章</a>
+                <a href="index02.html">AI工具箱</a>
+				<a href="index03.html" class="active">数据中心</a>
+                <a href="index04.html">关于我</a>
+               
+            </div>
+        </div>
+    </nav>
+
+    <!-- 页面头部 -->
+    <header class="page-header">
+        <div class="container">
+            <h1>数据中心</h1>
+            <p>可视化展示学习数据和知识积累</p>
+        </div>
+    </header>
+
+    <!-- 主要内容区域 -->
+    <main class="dashboard-container">
+        <div class="container">
+            <!-- 图表容器 -->
+            <div class="chart-card">
+                <h2>学习时长统计</h2>
+                <div id="mainChart" style="width: 100%; height: 400px;"></div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // 初始化图表
+        document.addEventListener('DOMContentLoaded', function() {
+            const chartDom = document.getElementById('mainChart');
+            const myChart = echarts.init(chartDom);
+
+            const option = {
+                title: {
+                    text: '每周学习时长分布'
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                },
+                legend: {
+                    data: ['课外学习', '专业课程', '英语学习']
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'category',
+                    data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+                },
+                yAxis: {
+                    type: 'value',
+                    name: '小时'
+                },
+                series: [
+                    {
+                        name: '课外学习',
+                        type: 'bar',
+                        stack: 'total',
+                        emphasis: {
+                            focus: 'series'
+                        },
+                        data: [2.5, 2.0, 3.0, 2.5, 2.0, 3.5, 4.0]
+                    },
+                    {
+                        name: '专业课程',
+                        type: 'bar',
+                        stack: 'total',
+                        emphasis: {
+                            focus: 'series'
+                        },
+                        data: [4.0, 4.5, 4.0, 3.5, 4.0, 3.0, 2.5]
+                    },
+                    {
+                        name: '英语学习',
+                        type: 'bar',
+                        stack: 'total',
+                        emphasis: {
+                            focus: 'series'
+                        },
+                        data: [1.5, 1.0, 1.5, 1.0, 1.5, 2.0, 2.5]
+                    }
+                ]
+            };
+
+            myChart.setOption(option);
+
+            // 响应窗口大小变化
+            window.addEventListener('resize', function() {
+                myChart.resize();
+            });
+        });
+    </script>
+	
+	<div id="main" style="width: 100%; height: 400px;"></div>
+    <script>
+	var chartDom = document.getElementById('main');
+var myChart = echarts.init(chartDom);
+var option;
+
+option = {
+  xAxis: {
+    type: 'category',
+    data: ['九月', '十月 ', '十一月', '十二月']
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      data: [150, 218, 224, 230],
+      type: 'line'
+    }
+  ]
+};
+
+option && myChart.setOption(option);
+
+	</script>
+	
+	
+    <footer>
+        <div class="container">
+            <p>© 2024 知识花园. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <style>
+        /* 数据中心特定样式 */
+        .dashboard-container {
+            padding: 2rem 0;
+        }
+
+        .chart-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(96, 165, 250, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .chart-card h2 {
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            color: #1f2937;
+        }
+    </style>
+	
+	
+
+	
+</body>
+</html>
